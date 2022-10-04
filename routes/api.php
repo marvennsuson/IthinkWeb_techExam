@@ -17,8 +17,10 @@ use App\Http\Controllers\Api\ProductController;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-Route::group(['prefix' => "apiv1",'as' => 'apiv1.','namespace' => "Api"] , function () {
-    Route::group(['prefix' => "products",'as' => 'products.'] , function () {
+
+Route::prefix('apiv1')->group(function()  {
+
+    Route::prefix('products')->group(function () {
         Route::controller(ProductController::class)->group(function () {
             Route::post('/index', 'index');
             Route::post('/store', 'store');
