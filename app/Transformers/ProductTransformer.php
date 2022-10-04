@@ -21,7 +21,7 @@ class ProductTransformer extends TransformerAbstract{
 	     	'id' => $product->id,
 	     	'product_name' => Str::title($product->name) ?: "",
             'product_description' => $product->description ?: "",
-            'price' => number_format($product->price , 2) ?: "",
+            'price' => "₱".number_format($product->price , 2) ?: "",
 	     ];
 	}
 }

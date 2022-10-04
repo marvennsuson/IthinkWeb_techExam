@@ -18,14 +18,11 @@ use App\Http\Controllers\Api\ProductController;
 //     return $request->user();
 // });
 
-Route::prefix('apiv1')->group(function()  {
-
-    Route::prefix('products')->group(function () {
-        Route::controller(ProductController::class)->group(function () {
-            Route::post('/index', 'index');
-            Route::post('/store', 'store');
-            Route::get('/show/{id}', 'show');
-            Route::delete('/destroy/{id}', 'destroy');
-        });
+Route::prefix('products')->group(function () {
+    Route::controller(ProductController::class)->group(function () {
+        Route::post('/index.{format}', 'index');
+        Route::post('/store.{format}', 'store');
+        Route::post('/show.{format}', 'show');
+        Route::post('/destroy.{format}', 'destroy');
     });
 });
