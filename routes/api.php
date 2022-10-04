@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Api\ProductController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+Route::group(['prefix' => "apiv1",'as' => 'apiv1.','namespace' => "Api"] , function () {
+    Route::group(['prefix' => "products",'as' => 'products.'] , function () {
+        Route::controller(ProductController::class)->group(function () {
+            Route::post('/index', 'index');
+            Route::post('/store', 'store');
+            Route::get('/show/{id}', 'show');
+            Route::delete('/destroy/{id}', 'destroy');
+        });
+    });
 });
