@@ -13,6 +13,14 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
+        Schema::create('products', function (Blueprint $table) {
+            $table->id();
+            $table->string('name',255)->nullable();
+            $table->longText('description')->nullable();
+            $table->decimal('price',8,2)->default('0.00');
+            $table->softDeletes();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -22,5 +30,6 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('products');
     }
 }
